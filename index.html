@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Quick Share — Send files directly</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#1d3558,#101827 52%,#0b1220);color:#eef4ff;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}.shell{max-width:720px;margin:auto;padding:22px 15px 38px}.top{display:flex;align-items:center;gap:12px}.logo{width:45px;height:45px;border-radius:14px;background:#2788f5;display:grid;place-items:center;font-size:29px;font-weight:800}.top h1{font-size:19px;margin:0}.top p{font-size:12px;color:#a6b6cc;margin:3px 0}.pill{margin-left:auto;color:#a4f0ca;background:#173b32;border-radius:20px;padding:7px 10px;font-size:11px}.hero{text-align:center;padding:42px 0 27px}.hero small{letter-spacing:2px;color:#7bbaff;font-weight:800}.hero h2{font-size:clamp(27px,6vw,39px);line-height:1.3;margin:12px 0}.hero h2 span{color:#76b8ff}.hero p{color:#a7b6cb;font-size:14px}.panel{background:white;color:#19263a;border-radius:23px;padding:18px;box-shadow:0 22px 65px #0005}.tabs{display:flex;background:#edf2f8;padding:4px;border-radius:13px;gap:4px}.tab{flex:1;border:0;background:none;border-radius:10px;padding:13px 6px;font-weight:800;color:#718096}.tab.active{background:#fff;color:#176bd1;box-shadow:0 2px 8px #0001}.view{padding:24px 3px 5px}.hidden{display:none!important}.step{font-size:14px;font-weight:750;margin-bottom:13px}.btn{border:0;border-radius:12px;padding:13px 17px;background:#1976e8;color:#fff;font-weight:800;cursor:pointer}.btn:disabled{opacity:.45}.full{width:100%}.code{margin-top:14px;padding:16px;text-align:center;background:#eff6ff;border:1px dashed #80b7f8;border-radius:15px}.code small{display:block;color:#60738c}.code strong{display:block;font-size:35px;letter-spacing:8px;color:#1264c5;margin:8px}.subbtn{border:0;border-radius:9px;padding:8px 13px;background:#dcecff;color:#145ca8;font-weight:700}.status{margin-top:14px;padding:12px;background:#f1f5f9;color:#596a80;border-radius:10px;font-size:13px}.pick{display:block;text-align:center;padding:19px;border:2px dashed #9bbce2;border-radius:13px;color:#176bd1;font-weight:800;margin-top:17px}.pick input{display:none}.join{display:flex;gap:8px}.join input{min-width:0;flex:1;border:1px solid #cbd5e1;border-radius:11px;padding:12px;font-size:20px;letter-spacing:5px;text-align:center}.muted{font-size:12px;color:#718096;margin-top:8px;overflow-wrap:anywhere}.progress{height:8px;background:#e8eef5;border-radius:20px;overflow:hidden;margin-top:13px}.progress div{height:100%;width:0;background:#16a36a;transition:width .12s}.file{display:flex;align-items:center;gap:10px;padding:12px;background:#eff8f3;border-radius:12px;margin-top:14px}.file .ico{font-size:24px;color:#16804c}.file .meta{flex:1;min-width:0}.file strong,.file small{display:block;overflow-wrap:anywhere}.file small{font-size:11px;color:#758397;margin-top:3px}.footgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}.footgrid div{background:#ffffff0d;border:1px solid #ffffff18;border-radius:12px;padding:12px;font-size:12px}.footgrid span{display:block;color:#a6b5ca;font-size:11px;margin-top:4px}footer{text-align:center;color:#8797af;font-size:11px;line-height:1.6}.warn{font-size:11px;color:#8a5b13;background:#fff7e6;border-radius:9px;padding:10px;margin-top:12px}@media(max-width:500px){.footgrid{grid-template-columns:1fr}.join{flex-direction:column}.pill{font-size:0}.pill:first-letter{font-size:12px}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="top"><div class="logo">⇄</div><div><h1>Quick Share</h1><p>এক মোবাইল থেকে অন্য মোবাইলে সরাসরি ফাইল পাঠান</p></div><span class="pill">🔒 Direct transfer</span></header>
+<section class="hero"><small>PHONE TO PHONE · PEER TO PEER</small><h2>ফাইল পাঠান <span>সরাসরি</span><br>কোনো আপলোড সার্ভার ছাড়াই</h2><p>কোনো অ্যাকাউন্ট বা স্থায়ী ডাটাবেজ নেই</p></section>
+<section class="panel">
+<div class="tabs"><button class="tab active" id="st">↗ SEND FILE</button><button class="tab" id="rt">↙ RECEIVE FILE</button></div>
+<div class="view" id="sv">
+<div class="step">১ · সংযোগ কোড তৈরি করুন</div><button class="btn full" id="create">নতুন কোড তৈরি করুন</button>
+<div class="code hidden" id="codebox"><small>RECEIVER-কে এই কোডটি দিন</small><strong id="code">------</strong><button class="subbtn" id="copy">কোড কপি</button></div>
+<div class="status" id="ss">কোড তৈরি করে অন্য ডিভাইসে দিন।</div>
+<div id="sendarea" class="hidden"><label class="pick">＋ ছবি, ভিডিও বা ফাইল নির্বাচন করুন<input type="file" id="file"></label><div class="muted" id="filename"></div><div class="progress"><div id="sp"></div></div><div class="muted" id="spt"></div></div>
+</div>
+<div class="view hidden" id="rv">
+<div class="step">১ · Sender-এর দেওয়া ৬ সংখ্যার কোড লিখুন</div><div class="join"><input id="room" inputmode="numeric" maxlength="6" placeholder="৬ সংখ্যার কোড"><button class="btn" id="join">যুক্ত হন</button></div>
+<div class="status" id="rs">Sender কোড তৈরি করলে এখানে লিখুন।</div>
+<div class="file hidden" id="filebox"><div class="ico">⇩</div><div class="meta"><strong id="rname">ফাইল</strong><small id="rsize"></small></div><button class="btn" id="download" disabled>ডাউনলোড</button></div>
+<div class="progress"><div id="rp"></div></div><div class="muted" id="rpt"></div>
+</div>
+</section>
+<div class="footgrid"><div>⚡ <b>সরাসরি পাঠানো</b><span>WebRTC DataChannel</span></div><div>🗑 <b>ফাইল জমা থাকে না</b><span>শুধু দুই ব্রাউজারে থাকে</span></div><div>📱 <b>মোবাইল উপযোগী</b><span>HTTPS-এ খুলুন</span></div></div>
+<footer>দুই ডিভাইসেই পেজ খোলা রাখুন। সংযোগ শেষ হলে পেজ বন্ধ করতে পারেন।</footer>
+<div class="warn">নোট: এটি একক HTML ফাইল। সংযোগ তৈরির জন্য PeerJS-এর পাবলিক signaling service ও CDN লাইব্রেরি ইন্টারনেটের মাধ্যমে ব্যবহৃত হয়; ফাইলের ডেটা WebRTC দিয়ে সরাসরি পাঠানোর চেষ্টা করা হয়। কিছু নেটওয়ার্কে TURN relay ছাড়া সংযোগ নাও হতে পারে।</div>
+</main>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script>
+(()=> {
+const $=id=>document.getElementById(id);
+let peer=null,conn=null,role=null,code=null,parts=[],received=0,meta=null,blob=null;
+const CHUNK=16*1024,MAX_BUFFER=1024*1024;
+function status(id,s){$(id).textContent=s}
+function tab(which){$('sv').classList.toggle('hidden',which!=='s');$('rv').classList.toggle('hidden',which!=='r');$('st').classList.toggle('active',which==='s');$('rt').classList.toggle('active',which==='r')}
+$('st').onclick=()=>tab('s');$('rt').onclick=()=>tab('r');
+function size(n){return n<1024?n+' B':n<1048576?(n/1024).toFixed(1)+' KB':(n/1048576).toFixed(2)+' MB'}
+function makePeer(id){
+ return new Promise((resolve,reject)=>{
+  peer=new Peer(id,{debug:1});
+  peer.on('open',resolve);
+  peer.on('error',e=>{status(role==='send'?'ss':'rs','সংযোগ সমস্যা: '+e.type+'. আবার চেষ্টা করুন।');reject(e)});
+  peer.on('connection',c=>{if(role==='receive'){conn=c;setupConn()}else c.close()});
+  peer.on('disconnected',()=>status(role==='send'?'ss':'rs','Signaling সংযোগ বিচ্ছিন্ন হয়েছে।'));
+ });
+}
+function setupConn(){
+ conn.on('open',()=>status(role==='send'?'ss':'rs','✅ দুই ডিভাইস সংযুক্ত!'));
+ conn.on('data',data=>{
+  if(typeof data==='string'){
+   let m;try{m=JSON.parse(data)}catch{return}
+   if(m.kind==='meta'){meta=m;parts=[];received=0;blob=null;$('filebox').classList.remove('hidden');$('rname').textContent=m.name;$('rsize').textContent=size(m.size);$('download').disabled=true;status('rs','ফাইল আসছে…')}
+   if(m.kind==='done'){blob=new Blob(parts,{type:meta.mime||'application/octet-stream'});$('download').disabled=false;$('rp').style.width='100%';$('rpt').textContent='100%';status('rs','✅ ফাইল এসেছে। ডাউনলোড করুন।')}
+  }else{
+   parts.push(data);received+=data.byteLength;
+   if(meta){let p=Math.min(100,received/meta.size*100);$('rp').style.width=p+'%';$('rpt').textContent=Math.floor(p)+'%'}
+  }
+ });
+ conn.on('close',()=>status(role==='send'?'ss':'rs','অন্য ডিভাইস সংযোগ বিচ্ছিন্ন করেছে।'));
+ conn.on('error',()=>status(role==='send'?'ss':'rs','ফাইল ট্রান্সফারে সমস্যা হয়েছে।'));
+}
+$('create').onclick=async()=>{
+ try{
+  if(peer)peer.destroy();role='send';$('create').disabled=true;status('ss','কোড তৈরি হচ্ছে…');
+  code=String(Math.floor(100000+Math.random()*900000));
+  await makePeer('qs-'+code);
+  $('code').textContent=code;$('codebox').classList.remove('hidden');
+  status('ss','কোড তৈরি হয়েছে। অন্য মোবাইলে RECEIVE দিয়ে কোডটি লিখুন।');
+  $('create').disabled=false;
+ }catch(e){$('create').disabled=false;status('ss','কোড তৈরি হয়নি। ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করুন।')}
+};
+$('join').onclick=async()=>{
+ const c=$('room').value.replace(/\D/g,'').slice(0,6);
+ if(c.length!==6){status('rs','৬ সংখ্যার কোড লিখুন।');return}
+ try{
+  if(peer)peer.destroy();role='receive';$('join').disabled=true;status('rs','সংযোগ করা হচ্ছে…');
+  await makePeer();
+  conn=peer.connect('qs-'+c,{reliable:true,serialization:'binary'});setupConn();
+  $('join').disabled=false;
+ }catch(e){$('join').disabled=false;status('rs','সংযোগ করা যায়নি। কোড ও ইন্টারনেট পরীক্ষা করুন।')}
+};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(code);status('ss','কোড কপি হয়েছে।')}catch{status('ss','কোডটি হাতে কপি করুন।')}};
+$('file').onchange=async e=>{
+ const f=e.target.files[0];if(!f)return;
+ if(!conn||!conn.open){status('ss','আগে Receiver যুক্ত করুন।');return}
+ $('filename').textContent=f.name+' · '+size(f.size);$('sp').style.width='0%';
+ try{
+  conn.send(JSON.stringify({kind:'meta',name:f.name,size:f.size,mime:f.type}));
+  let offset=0;
+  while(offset<f.size){
+   if(conn.dataChannel && conn.dataChannel.bufferedAmount>MAX_BUFFER) await new Promise(r=>setTimeout(r,60));
+   let chunk=f.slice(offset,offset+CHUNK);conn.send(await chunk.arrayBuffer());offset+=chunk.size;
+   let p=f.size?offset/f.size*100:100;$('sp').style.width=p+'%';$('spt').textContent=Math.floor(p)+'%';
+  }
+  conn.send(JSON.stringify({kind:'done'}));status('ss','✅ ফাইল পাঠানো শেষ হয়েছে।');
+ }catch(err){status('ss','পাঠাতে সমস্যা হয়েছে: '+err.message)}
+};
+$('download').onclick=()=>{
+ if(!blob||!meta)return;
+ const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=meta.name||'download';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),60000);
+};
+window.addEventListener('beforeunload',()=>{if(peer)peer.destroy()});
+})();
+</script>
+</body></html>
